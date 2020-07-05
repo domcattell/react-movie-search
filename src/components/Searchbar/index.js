@@ -1,5 +1,6 @@
-import React, {useContext, useEffect} from 'react';
-import {SearchActions, SearchContext} from '../../store/SearchResults/actions';
+import React, {useEffect} from 'react';
+import {withRouter} from 'react-router-dom'
+import {useSearchActions, useSearchContext} from '../../utils/hooks/useSearchContext';
 import SearchIcon from '@material-ui/icons/Search';
 import useInput from '../../utils/hooks/useInput';
 import { Container, InputAdornment, TextField, Button } from '@material-ui/core';
@@ -9,21 +10,17 @@ import SearchResults from '../SearchResults';
 
 const Searchbar = (props) => {
 	const [ search, handleChange ] = useInput('');
-	const {getFilms, clearFilms} = useContext(SearchActions)
-	const {films} = useContext(SearchContext)
+	const {getFilms, clearFilms} = useSearchActions()
+	const {films} = useSearchContext()
 	const {classes} = props;
 
 	useEffect(() => {
 		getFilms(search)
-
-		return () => {
-			clearFilms()
-		}
 	},[getFilms, search, clearFilms])
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		getFilms(search)
+		props.history.push(`/movies/search/${search}`)
 	}
 
 	return (
@@ -51,4 +48,4 @@ const Searchbar = (props) => {
 	);
 };
 
-export default withStyles(styles)(Searchbar);
+export default withStyles(styles)(withRouter(Searchbar));

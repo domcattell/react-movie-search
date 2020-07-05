@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { MenuList, MenuItem } from '@material-ui/core';
-import { SearchContext } from '../../store/SearchResults/actions';
+import { useSearchContext } from '../../utils/hooks/useSearchContext';
 import { withStyles } from '@material-ui/styles';
 import LinkIcon from '@material-ui/icons/Link';
 import styles from './Styles';
 
 const SearchResults = (props) => {
-	const { films, totalResults } = useContext(SearchContext);
+	const { films, totalResults } = useSearchContext();
 
 	const { classes } = props;
 
