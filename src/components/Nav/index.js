@@ -1,12 +1,12 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import Logo from '../Logo';
 
 const Nav = () => {
 	return (
 		<AppBar position="static">
-			<Toolbar>
-                <Typography>Movie Search</Typography>
+			<Toolbar variant="dense">
+                <Typography component={Link} to="/" variant="h6">Movie Search</Typography>
 			</Toolbar>
 		</AppBar>
 	);

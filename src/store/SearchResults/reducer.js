@@ -1,4 +1,4 @@
-import {GET_FILM, GET_FILM_FAILED, CLEAR_FILMS, GET_FILMS, GET_FILMS_FAILED} from '../types';
+import {GET_FILM, GET_FILM_FAILED, CLEAR_FILMS, GET_FILMS, GET_FILMS_FAILED, GET_MORE_FILMS} from '../types';
 
 const reducer = (state, action) => {
     switch(action.type) {
@@ -27,6 +27,13 @@ const reducer = (state, action) => {
                 films: action.payload.Search,
                 totalResults: action.payload.totalResults,
                 responseOk: action.payload.Response,
+            }
+        
+        case GET_MORE_FILMS:
+            return {
+                ...state,
+                films: [...state.films, ...action.payload.Search],
+                responseOk: action.payload.Response
             }
 
         case GET_FILMS_FAILED:

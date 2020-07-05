@@ -1,19 +1,28 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SearchList from '../components/SearchList';
 import { useSearchActions } from '../utils/hooks/useSearchContext';
+import InfiniteScroll from 'react-infinite-scroller';
 
 const Search = (props) => {
-	const { getFilms } = useSearchActions();
+	const { getMoreFilms } = useSearchActions();
 	const { query } = props.match.params;
 
-	useEffect(
-		() => {
-			getFilms(query);
-		},
-		[ getFilms, query ]
-	);
+	const getMoreRequests = (page) => {
+		getMoreFilms(page, query)
+	};
 
-	return <SearchList />;
+	return (
+		<div>
+			<InfiniteScroll 
+				pageStart={0} 
+				loadMore={getMoreRequests}
+				hasMore={true}
+				useWindow={true}
+			>
+				<SearchList />
+			</InfiniteScroll>
+		</div>
+	);
 };
 
 export default Search;
