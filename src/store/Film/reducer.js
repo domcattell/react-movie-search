@@ -1,4 +1,4 @@
-import {GET_FILM, GET_FILM_FAILED, CLEAR_FILM, GET_FILMS, GET_FILMS_FAILED} from '../types';
+import {GET_FILM, GET_FILM_FAILED, CLEAR_FILM} from '../types';
 
 const reducer = (state, action) => {
     switch(action.type) {
@@ -7,7 +7,8 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 loading: false,
-                film: action.payload
+                film: action.payload,
+                responseOk: action.payload.Response
             }
 
         case GET_FILM_FAILED:
@@ -15,22 +16,15 @@ const reducer = (state, action) => {
                 ...state,
                 loading: false,
                 error: true,
-                message: action.payload
+                errorMessage: action.payload,
+                responseOk: action.payload.Response
             }
 
-        case GET_FILMS:
+        case CLEAR_FILM:
             return {
                 ...state,
-                loading: false,
-                films: action.payload
-            }
-
-        case GET_FILMS_FAILED:
-            return {
-                ...state,
-                loading: false,
-                error: true,
-                message: action.payload
+                film: {},
+                responseOk: true,
             }
 
         default:

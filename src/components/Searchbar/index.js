@@ -1,5 +1,5 @@
 import React, {useContext, useEffect} from 'react';
-import {FilmActions, FilmContext} from '../../store/films/actions';
+import {SearchActions, SearchContext} from '../../store/SearchResults/actions';
 import SearchIcon from '@material-ui/icons/Search';
 import useInput from '../../utils/hooks/useInput';
 import { Container, InputAdornment, TextField, Button } from '@material-ui/core';
@@ -9,19 +9,17 @@ import SearchResults from '../SearchResults';
 
 const Searchbar = (props) => {
 	const [ search, handleChange ] = useInput('');
-	const {getFilms} = useContext(FilmActions)
-	const {films} = useContext(FilmContext)
+	const {getFilms, clearFilms} = useContext(SearchActions)
+	const {films} = useContext(SearchContext)
 	const {classes} = props;
 
 	useEffect(() => {
-		//using setTimeout here probably isn't the best practice
-		//but as the api key has a 1000 request limit, it helps
-		//try to keep the request amount lower
-		setTimeout(() => {
-			getFilms(search)
-		},500)
+		getFilms(search)
 
-	},[getFilms, search])
+		return () => {
+			clearFilms()
+		}
+	},[getFilms, search, clearFilms])
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -48,7 +46,7 @@ const Searchbar = (props) => {
 					}}
 				/>
 			</form>
-			{films.Search && <SearchResults />}
+			{films && <SearchResults />}
 		</Container>
 	);
 };
