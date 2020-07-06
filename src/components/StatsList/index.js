@@ -8,6 +8,8 @@ import styles from './Styles';
 const StatsList = (props) => {
 	const { film } = useFilmContext();
 	const { classes } = props;
+
+	//simple component using global state to display a list of film stats
 	return (
 		<Paper className={classes.root}>
 			<List component="nav" aria-label="main mailbox folders">

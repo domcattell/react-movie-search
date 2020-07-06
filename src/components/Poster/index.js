@@ -5,7 +5,9 @@ import { withStyles } from '@material-ui/styles';
 import styles from './Styles';
 
 const Poster = (props) => {
+	//uses custom hook for pulling state from context API
 	const { film } = useFilmContext();
+	//destructure props
 	const { classes } = props;
 	return (
 		<Box>
@@ -16,4 +18,5 @@ const Poster = (props) => {
 	);
 };
 
+//uses material UI's withStyles HOC to use custom styles
 export default withStyles(styles)(Poster);

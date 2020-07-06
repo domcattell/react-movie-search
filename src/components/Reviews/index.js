@@ -7,7 +7,10 @@ import styles from './Styles';
 
 const Reviews = (props) => {
     const {film} = useFilmContext();
-    const {classes} = props;
+	const {classes} = props;
+	
+	//this component maps through the list of ratings for a film
+	//and displats them as a list item
 	return (
 		<Card className={classes.root}>
 			<CardContent>
@@ -17,7 +20,7 @@ const Reviews = (props) => {
 				<List />
 				{film.Ratings &&
 					film.Ratings.map((rating) => (
-						<ListItem key={film.ratingSource}>
+						<ListItem key={rating.Source}>
 							<Typography className={classes.ratingSource}>{rating.Source}</Typography>
 							<Chip color="primary" icon={<Star />} label={rating.Value} />
 						</ListItem>
@@ -27,4 +30,5 @@ const Reviews = (props) => {
 	);
 };
 
+//uses withStyles HOC from material UI to use custom styles. CSS to JS
 export default withStyles(styles)(Reviews);

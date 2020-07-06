@@ -1,6 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/styles';
 
+//simple grid container for displaying the search results
 const useStyles = makeStyles({
     root: {
         display: "grid",

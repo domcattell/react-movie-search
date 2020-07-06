@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+//simple hook for managing input state
 const useInput = (init) => {
 	const [ value, setValue ] = useState(init);
 

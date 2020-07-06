@@ -5,12 +5,22 @@ import reducer from './reducer';
 import axios from 'axios';
 import initialState from './initialState';
 
+//uses the context API for global state.
+//creates a context for holding state,
+//and a context for holding actions
 export const FilmContext = createContext();
 export const FilmActions = createContext();
 
+//creates a provider to be wrapped around components giving them access to global state
 export const FilmProvider = (props) => {
+	//uses useReducer hook to dispatch different types depending
+	//on request
 	const [ state, dispatch ] = useReducer(reducer, initialState);
 
+	//api get request to get a film. uses the imdbID as parameter
+	//this API isn't the greatest, as instead of it error response codes
+	//it will still return 200, making it hard to catch the errors in the catch
+	//block sometimes
 	const getFilm = useCallback(async (filmID) => {
 		try {
 			const result = await axios.get(`${BASE_URI}?i=${filmID}${API_KEY}`);
@@ -20,11 +30,13 @@ export const FilmProvider = (props) => {
 			});
 		} catch (err) {
 			dispatch({
-				type: GET_FILM_FAILED
+				type: GET_FILM_FAILED,
+				payload: err.response.data
 			});
 		}
 	}, []);
 
+	//clears films data
 	const clearFilm = useCallback(() => {
 		dispatch({
 			type: CLEAR_FILM
