@@ -1,5 +1,6 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/styles';
+import responsiveSizes from '../../shared/responsiveSizes';
 
 //simple grid container for displaying the search results
 const useStyles = makeStyles({
@@ -8,6 +9,11 @@ const useStyles = makeStyles({
         gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
         gridGap: "2em",
         justifyItems: "center",
+
+        [responsiveSizes.down("md")]: {
+            gridGap: "1em",
+            justifyContent: "center"
+        }
     }
 })
 

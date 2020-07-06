@@ -9,7 +9,7 @@ import ErrorBoundry from '../Layout/ErrorBoundry';
 const SearchList = () => {
 	//pulls out the loading and error global state to pass into the loading and error container components
 	const { films, loading, responseOk, errorMessage } = useSearchContext();
-
+	
 	//uses ErrorBoundry component to display error from server. 
 	//maps through each film and creates a FilmCard component, passing
 	//the data as props.
