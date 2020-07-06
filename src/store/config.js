@@ -2,4 +2,4 @@
 //and very easy to get a key I have left it visible
 
 export const API_KEY = "&apikey=e0027f93";
-export const BASE_URI = "http://www.omdbapi.com/"
+export const BASE_URI = "https://www.omdbapi.com/"
