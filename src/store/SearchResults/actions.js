@@ -1,9 +1,9 @@
 import React, { createContext, useReducer, useCallback } from 'react';
 import { CLEAR_FILMS, GET_FILMS, GET_FILMS_FAILED, GET_MORE_FILMS } from '../types';
 import { BASE_URI, API_KEY } from '../config';
+import { searchRequest } from '../../utils/helpers/optimiseSearch';
 import reducer from './reducer';
 import axios from 'axios';
-import { searchRequest } from '../../utils/optimiseSearch';
 import initialState from './initialState';
 
 export const SearchContext = createContext();
@@ -41,7 +41,6 @@ export const SearchProvider = (props) => {
 		} catch(err) {
 			dispatch({
 				type: GET_FILMS_FAILED,
-				payload: err.response.data
 			})
 		}
 	}

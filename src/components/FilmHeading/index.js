@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container, Typography } from '@material-ui/core';
 import { useFilmContext } from '../../utils/hooks/useFilmContext';
+import { Container, Typography } from '@material-ui/core';
 
 const Heading = () => {
 	const { film } = useFilmContext();

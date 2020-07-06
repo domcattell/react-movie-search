@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
-import {withRouter} from 'react-router-dom'
 import {useSearchActions, useSearchContext} from '../../utils/hooks/useSearchContext';
-import SearchIcon from '@material-ui/icons/Search';
-import useInput from '../../utils/hooks/useInput';
+import {withRouter} from 'react-router-dom'
 import { Container, InputAdornment, TextField, Button } from '@material-ui/core';
 import {withStyles} from '@material-ui/styles';
+import SearchIcon from '@material-ui/icons/Search';
+import useInput from '../../utils/hooks/useInput';
+import SearchDropdown from '../SearchDropdown';
 import styles from './Styles';
-import SearchResults from '../SearchResults';
 
 const Searchbar = (props) => {
 	const [ search, handleChange ] = useInput('');
@@ -16,6 +16,9 @@ const Searchbar = (props) => {
 
 	useEffect(() => {
 		getFilms(search)
+		return () => {
+			clearFilms();
+		}
 	},[getFilms, search, clearFilms])
 
 	const handleSubmit = (e) => {
@@ -43,7 +46,7 @@ const Searchbar = (props) => {
 					}}
 				/>
 			</form>
-			{films && <SearchResults />}
+			{films && <SearchDropdown />}
 		</Container>
 	);
 };

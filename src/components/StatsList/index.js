@@ -1,8 +1,8 @@
 import React from 'react';
 import { useFilmContext } from '../../utils/hooks/useFilmContext';
+import { withStyles } from '@material-ui/styles';
 import { Paper, ListItem, Chip, List } from '@material-ui/core';
 import { Schedule, Person, Note, Star, MonetizationOn } from '@material-ui/icons';
-import { withStyles } from '@material-ui/styles';
 import styles from './Styles';
 
 const StatsList = (props) => {

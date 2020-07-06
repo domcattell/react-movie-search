@@ -33,7 +33,9 @@ const reducer = (state, action) => {
             return {
                 ...state,
                 films: [...state.films, ...action.payload.Search],
-                responseOk: action.payload.Response
+                responseOk: action.payload.Response,
+                totalResults: action.payload.totalResults,
+                loading: false
             }
 
         case GET_FILMS_FAILED:
@@ -49,6 +51,9 @@ const reducer = (state, action) => {
                 ...state,
                 films: [],
                 responseOk: true,
+                totalResults: null,
+                errorMessage: null,
+                loading: true
             }
 
         default:

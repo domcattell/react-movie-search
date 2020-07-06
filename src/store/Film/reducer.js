@@ -25,6 +25,7 @@ const reducer = (state, action) => {
                 ...state,
                 film: {},
                 responseOk: true,
+                loading: true
             }
 
         default:

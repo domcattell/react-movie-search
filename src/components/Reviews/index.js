@@ -1,9 +1,9 @@
 import React from 'react';
 import {useFilmContext} from '../../utils/hooks/useFilmContext';
 import {Card, CardContent, Typography, List, ListItem, Chip} from '@material-ui/core';
+import {withStyles} from '@material-ui/styles';
 import {Star} from '@material-ui/icons';
 import styles from './Styles';
-import {withStyles} from '@material-ui/styles';
 
 const Reviews = (props) => {
     const {film} = useFilmContext();
@@ -17,7 +17,7 @@ const Reviews = (props) => {
 				<List />
 				{film.Ratings &&
 					film.Ratings.map((rating) => (
-						<ListItem>
+						<ListItem key={film.ratingSource}>
 							<Typography className={classes.ratingSource}>{rating.Source}</Typography>
 							<Chip color="primary" icon={<Star />} label={rating.Value} />
 						</ListItem>

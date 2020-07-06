@@ -1,5 +1,5 @@
 export default {
-    loading: false,
+    loading: true,
     film: {},
     totalResults: null,
     errorMessage: null,

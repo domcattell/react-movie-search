@@ -1,7 +1,7 @@
 import React from 'react';
 import {withStyles} from '@material-ui/styles';
-import styles from './Styles';
 import MovieIcon from '@material-ui/icons/Movie'
+import styles from './Styles';
 
 const Logo = (props) => {
     const {classes} = props;
